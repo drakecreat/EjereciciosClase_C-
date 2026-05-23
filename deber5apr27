@@ -1,0 +1,130 @@
+#include <iostream>
+#include <string>
+#include <cstdlib> // rand(), srand()
+#include <ctime> // time()
+#include <array>
+
+using namespace std ;
+
+class jugador{
+    private:
+        char simbolo;
+        string nombre;
+    public:
+        jugador(char s, string n){
+            simbolo = s;
+            nombre = n;
+        }
+    string getn(){
+        return nombre;
+    }
+    char gets(){
+        return simbolo;
+    }
+    void ganador(){
+        cout<<"El ganador es: "<<nombre;
+    }
+
+};
+
+bool verificacion(array<array<char,3>,3> t, char &ganador){
+    for(int i = 0; i < 3; i++){
+        if(t[i][0] == t[i][1] && t[i][1] == t[i][2]) return true;
+        ganador = t[i][0];
+    }
+    for(int j = 0; j < 3; j++){
+        if(t[0][j] == t[1][j] && t[1][j] == t[2][j]) return true;
+        ganador = t[0][j];
+    }
+    if(t[0][0] == t[1][1] && t[1][1] == t[2][2]) {return true; ganador = t[0][0];}
+
+    if(t[0][2] == t[1][1] && t[1][1] == t[2][0]) {return true; ganador = t[0][2];}
+
+    return false;
+}
+
+int main () {
+char ganador;
+char s1,s2;
+string n1,n2;
+cout<<"======BIENVENIDO======"<<endl<<"=====TRES EN RAYA====="<<endl;
+cout <<"Ingresa el nombre para el primer jugador: "; cin>> n1;
+cout <<"Ingresa el nombre para el primer jugador: "; cin>> n2;
+cout <<n1<<" ingresa el simbolo que vas a usar: "; cin>> s1;
+cout <<n2<<" ingresa el simbolo que vas a usar: "; cin>> s2;
+cout <<"Se asigno un numero para cada casilla de la siguiente forma: "<<endl;
+jugador U1 (s1, n1 );
+jugador U2 (s2, n2 );
+
+array<array<char,3>,3> tablero = {{{'1','2','3'},{'4','5','6'},{'7','8','9'}}};
+
+
+do{
+
+for (int i = 0; i < tablero.size(); i++){
+    for (int j = 0; j < tablero[i].size(); j++){
+        cout<<"|_"<<tablero[i][j]<<"_|";
+    }
+    cout<<endl;
+}
+int casilla, columna;
+cout<<U1.getn()<<" ingresa la fila en la que quieres colocar tu simbolo [1-3]: ";
+cin>>casilla;
+cout<<U1.getn()<<" ingresa la columna en la que quieres colocar tu simbolo [1-3]: ";
+cin>>columna;
+tablero[casilla-1][columna-1] = U1.gets();
+if(verificacion(tablero, ganador)== false){
+
+for (int i = 0; i < tablero.size(); i++){
+    for (int j = 0; j < tablero[i].size(); j++){
+        cout<<"|_"<<tablero[i][j]<<"_|";
+    }
+    cout<<endl;
+}
+
+int casilla, columna;
+cout<<U2.getn()<<" ingresa la fila en la que quieres colocar tu simbolo [1-3]: ";
+cin>>casilla;
+cout<<U2.getn()<<" ingresa la columna en la que quieres colocar tu simbolo [1-3]: ";
+cin>>columna;
+tablero[casilla-1][columna-1] = U2.gets();
+}else { if(ganador == U1.gets()){U1.ganador();cout<<" Felicitaciones "<<U1.getn()<<" has ganado!"<<endl;}
+        else if(ganador == U2.gets()){U2.ganador();cout<<"Felicitaciones "<<U2.getn()<<" has ganado!"<<endl;}
+        else{cout<<"Empate!";}
+       }
+
+
+
+} while(!verificacion(tablero, ganador));
+
+
+
+return 0;
+}
+
+
+
+
+7
+
+- añado librerias
+- creo tablero
+- imprimo tablero para verificar 
+- creo clase jugador 
+- creo 2 jugadores x y o despues funcion para rellenar las casillas elejidas
+
+formas para verificar:
+i,j | i,j+1 | i,j+2      
+---------------
+i+1,j | i+1,j+1 | i+1,j+2
+---------------
+i+2,j | i+2,j+1 | i+2,j+2 
+
+1) (i,j)    (i,j+1)    (i,j+2)
+
+2) (i,j)==(i+1,j)==(i+2,j)
+
+3) i,j i+1,j+1 i+2,j+2
+
+ganador dentro de la verificacion 
+comparo con el simbolo dentro del jugador
