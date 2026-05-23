@@ -1,0 +1,126 @@
+#include <iostream>
+#include <string>
+#include <array>
+
+using namespace std;
+
+
+/*
+3. Funci´on externa (fuera de la clase):
+    void actualizarPuntaje(int* ptrPuntaje) — Recibe puntero y suma 1 al puntaje
+4. Variables en main():
+    Puntaje de cada jugador (usar punteros para actualizar)
+    Men´u: Jugar, Ver puntajes, Salir (usa while)
+5. Uso de librer´ıa: #include <cstdlib> para rand() — elegir qui´en comienza.
+6. Validaciones: Posici´on fuera de rango (1-9), posici´on ya ocupada.
+
+*/
+
+class tresenraya {
+
+    private:
+
+    char tablero[3][3]= {{'1','2','3'},{'4','5','6'},{'7','8','9'}};
+    string n1, n2;
+    char ch1 ,ch2;
+    public:
+    void mostrarTablero(){//mostrar tablero
+        for (int i = 0; i< 3; i++){
+            for (int j = 0; j< 3; j++){
+                cout<<"|"<<tablero[i][j]<<"|";
+            }
+        }
+    }
+    bool colocarFicha(int posicion){//posicion valida
+
+    for(int i =0;i< 3 ;i++){
+        for(int j =0;j< 3 ;j++){
+            if (posicion ==  ) {
+                if((tablero[i][j] == 'O') or (tablero[0][0]= 'O')){
+                   return true;
+                }else return false;
+            }
+        }   
+    }
+    }
+    char verificarGanador(){
+    if((tablero[0][0] == tablero[0][1] == tablero[0][2])) return tablero[0][0];
+    if((tablero[1][0] == tablero[1][1] == tablero[1][2])) return tablero[1][0];
+    if((tablero[2][0] == tablero[2][1] == tablero[2][2])) return tablero[1][0];
+
+    if((tablero[0][0] == tablero[1][0] == tablero[2][0])) return tablero[0][0];
+    if((tablero[0][1] == tablero[1][1] == tablero[2][1])) return tablero[1][0];
+    if((tablero[0][2] == tablero[1][2] == tablero[1][2])) return tablero[1][0];
+
+    if((tablero[0][0] == tablero[1][1] == tablero[2][2])) return tablero[0][0];
+    if((tablero[1][0] == tablero[1][1] == tablero[0][2])) return tablero[1][0];
+
+    }
+    bool tableroLleno(){
+        for(int i =0; i< 3; i++) {
+            for(int j = 0; i< 3; i++) {
+            if((tablero[i][j]!='O') and (tablero[i][j]!= 'X'))
+             return false;
+            }
+        }
+    }
+    void reiniciar(){
+
+        tablero[0][0] =1;
+        tablero[0][1] =2;
+        tablero[0][2] =3;
+        tablero[1][0] =4;
+        tablero[1][1] =5;
+        tablero[1][2] =6;
+        tablero[2][0] =7;
+        tablero[2][1] =8;
+        tablero[2][2] = 9;
+    }
+    
+    tresenraya(string n1 ,string n2,char ch1,char ch2,char tablero[3][3]){
+        n1 = n1;
+        n2 = n2;
+        ch1 = ch1;
+        ch2 = ch2;
+    }
+};
+
+void actualizarPuntaje(int* ptrPuntaje) — Recibe puntero y suma 1 al puntaje
+
+
+int main (){
+    string n1,n2;
+    char ch1= 'X';
+    char ch2= 'O';
+    int op;
+    char tablero[3][3]= {{'1','2','3'},{'4','5','6'},{'7','8','9'}};
+    int posicion;
+    
+    cout<<"=== TRES EN RAYA ===";
+    do{
+    cout<<"1. jugar  2. Ver puntajes  3. Salir";
+    cin>>op;
+
+    if(op== 1){
+
+        cout<<"Jugador 1: "; cin>> n1;
+        cout<<"Jugador 2: "; cin>> n2;
+        
+        //muestro tablero
+        cout<<"Jugador 2: "; cin>>posicion;
+
+        
+    }else if(op == 2){
+        
+
+
+    }else if(op == 3)
+        { op =3;}
+    }while(op != 3 );
+
+
+
+
+
+    return 0;
+}
